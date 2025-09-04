@@ -5,12 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  Search, 
-  Star, 
-  MapPin, 
-  Clock, 
-  Phone, 
+import {
+  Search,
+  Star,
+  MapPin,
+  Clock,
+  Phone,
   CheckCircle,
   ArrowLeft,
   Wrench,
@@ -18,45 +18,47 @@ import {
   Car,
   Paintbrush,
   Hammer,
-  Shield
+  Shield,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AuthDialog from "@/components/auth/AuthDialog";
 
+// --- Service categories ---
 const serviceCategories = {
   plumbing: {
     title: "Plumbing Services",
     icon: Wrench,
     color: "text-blue-600",
-    description: "Professional plumbing repairs, installations, and maintenance"
+    description:
+      "Professional plumbing repairs, installations, and maintenance",
   },
   electrical: {
-    title: "Electrical Services", 
+    title: "Electrical Services",
     icon: Zap,
     color: "text-yellow-600",
-    description: "Licensed electricians for all electrical needs"
+    description: "Licensed electricians for all electrical needs",
   },
   vehicle: {
     title: "Vehicle Services",
     icon: Car,
-    color: "text-green-600", 
-    description: "Auto repair, maintenance, and servicing"
+    color: "text-green-600",
+    description: "Auto repair, maintenance, and servicing",
   },
   cleaning: {
     title: "Cleaning Services",
     icon: Paintbrush,
     color: "text-purple-600",
-    description: "Professional home and office cleaning"
+    description: "Professional home and office cleaning",
   },
   handyman: {
     title: "Handyman Services",
     icon: Hammer,
     color: "text-orange-600",
-    description: "General repairs and maintenance work"
-  }
+    description: "General repairs and maintenance work",
+  },
 };
 
+// --- Dummy data ---
 const dummyProviders = [
   {
     id: 1,
@@ -70,21 +72,21 @@ const dummyProviders = [
     verified: true,
     available: true,
     specialties: ["Emergency repairs", "Installation", "Maintenance"],
-    responseTime: "Within 30 mins"
+    responseTime: "Within 30 mins",
   },
   {
     id: 2,
     name: "Sarah Johnson",
     rating: 4.8,
     reviews: 94,
-    experience: "6+ years", 
+    experience: "6+ years",
     location: "Uptown District",
     price: "$40/hour",
     avatar: "",
     verified: true,
     available: true,
     specialties: ["Residential", "Commercial", "24/7 Service"],
-    responseTime: "Within 1 hour"
+    responseTime: "Within 1 hour",
   },
   {
     id: 3,
@@ -93,25 +95,29 @@ const dummyProviders = [
     reviews: 156,
     experience: "10+ years",
     location: "West Side",
-    price: "$50/hour", 
+    price: "$50/hour",
     avatar: "",
     verified: true,
     available: false,
     specialties: ["Expert diagnosis", "Quality repairs", "Warranty included"],
-    responseTime: "Within 2 hours"
-  }
+    responseTime: "Within 2 hours",
+  },
 ];
 
 const Services = () => {
   const { category } = useParams();
   const [searchQuery, setSearchQuery] = useState("");
-  
-  const serviceInfo = serviceCategories[category as keyof typeof serviceCategories];
+
+  const serviceInfo =
+    serviceCategories[category as keyof typeof serviceCategories];
   const Icon = serviceInfo?.icon || Wrench;
 
-  const filteredProviders = dummyProviders.filter(provider =>
-    provider.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    provider.specialties.some(spec => spec.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredProviders = dummyProviders.filter(
+    (provider) =>
+      provider.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      provider.specialties.some((spec) =>
+        spec.toLowerCase().includes(searchQuery.toLowerCase())
+      )
   );
 
   if (!serviceInfo) {
@@ -132,23 +138,30 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <div className="container mx-auto px-4 py-8">
+        {/* Back + heading */}
         <div className="mb-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
+          >
             <ArrowLeft className="h-4 w-4" />
             Back to home
           </Link>
-          
+
           <div className="flex items-center gap-3 mb-2">
             <div className={`p-2 rounded-lg bg-accent ${serviceInfo.color}`}>
               <Icon className="h-6 w-6" />
             </div>
-            <h1 className="text-3xl font-bold text-foreground">{serviceInfo.title}</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              {serviceInfo.title}
+            </h1>
           </div>
           <p className="text-muted-foreground">{serviceInfo.description}</p>
         </div>
 
+        {/* Search */}
         <div className="mb-8">
           <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -161,15 +174,24 @@ const Services = () => {
           </div>
         </div>
 
+        {/* Providers list */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProviders.map((provider) => (
-            <Card key={provider.id} className="hover:shadow-lg transition-shadow">
+            <Card
+              key={provider.id}
+              className="hover:shadow-lg transition-shadow"
+            >
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={provider.avatar} />
-                      <AvatarFallback>{provider.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      <AvatarFallback>
+                        {provider.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </AvatarFallback>
                     </Avatar>
                     <div>
                       <div className="flex items-center gap-2">
@@ -205,10 +227,12 @@ const Services = () => {
                   </div>
                 </div>
               </CardHeader>
-              
+
               <CardContent className="pt-0">
                 <div className="mb-4">
-                  <p className="text-sm text-muted-foreground mb-2">Specialties:</p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Specialties:
+                  </p>
                   <div className="flex flex-wrap gap-1">
                     {provider.specialties.map((specialty, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
@@ -219,7 +243,9 @@ const Services = () => {
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold text-primary">{provider.price}</span>
+                  <span className="text-lg font-bold text-primary">
+                    {provider.price}
+                  </span>
                   <Button variant="ghost" size="sm">
                     <Phone className="h-4 w-4 mr-1" />
                     Call
@@ -230,20 +256,27 @@ const Services = () => {
                   <Button variant="outline" size="sm">
                     View Profile
                   </Button>
-                  <AuthDialog>
-                    <Button variant="hero" size="sm" disabled={!provider.available}>
+                  <Link to="/signin">
+                    <Button
+                      variant="hero"
+                      size="sm"
+                      disabled={!provider.available}
+                    >
                       Book Now
                     </Button>
-                  </AuthDialog>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
+        {/* No results */}
         {filteredProviders.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No providers found matching your search.</p>
+            <p className="text-muted-foreground">
+              No providers found matching your search.
+            </p>
           </div>
         )}
       </div>
