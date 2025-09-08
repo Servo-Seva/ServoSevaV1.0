@@ -35,9 +35,9 @@ const LocationDialog = ({ location, setLocation }: LocationDialogProps) => {
 
   return (
     <Dialog>
-      {/* Trigger button (header) */}
+      {/* Trigger button */}
       <DialogTrigger asChild>
-        <button className="flex items-center gap-2 w-64 px-4 py-2 border rounded-md bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
+        <button className="inline-flex items-center gap-2 px-4 py-2 border rounded-md bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer max-w-full sm:w-64">
           <MapPin className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm truncate flex-1">{location}</span>
           <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -45,7 +45,7 @@ const LocationDialog = ({ location, setLocation }: LocationDialogProps) => {
       </DialogTrigger>
 
       {/* Dialog */}
-      <DialogContent className="sm:max-w-lg p-0 rounded-2xl overflow-hidden shadow-2xl">
+      <DialogContent className="w-auto max-w-[98vw] sm:max-w-2xl lg:max-w-3xl p-0 rounded-md overflow-hidden shadow-2xl mx-auto">
         {/* Header */}
         <DialogHeader className="p-4 border-b">
           <DialogTitle className="text-base font-semibold text-foreground">
@@ -55,21 +55,21 @@ const LocationDialog = ({ location, setLocation }: LocationDialogProps) => {
 
         {/* Search Input */}
         <div className="p-4">
-          <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-background shadow-sm focus-within:ring-2 focus-within:ring-primary/50">
+          <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-background shadow-sm focus-within:ring-2 focus-within:ring-primary/50 w-full sm:w-auto">
             <Search className="h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search for your location, society, or apartment"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 bg-transparent outline-none text-sm"
+              className="flex-1 min-w-0 bg-transparent outline-none text-sm"
             />
           </div>
 
-          {/* Use Current Location */}
+          {/* Use Current Location button */}
           <button
             onClick={handleUseCurrentLocation}
-            className="flex items-center gap-2 mt-5 px-3 py-2 rounded-lg text-primary font-medium hover:bg-primary/10 transition-colors"
+            className="flex items-center gap-2 mt-5 px-3 py-2 rounded-lg text-primary font-medium hover:bg-primary/10 transition-colors w-full sm:w-auto"
           >
             <Crosshair className="h-4 w-4" />
             Use current location
