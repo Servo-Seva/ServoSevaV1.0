@@ -1,5 +1,6 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthDialog from "@/components/auth/AuthDialog";
+import LocationDialog from "./ui/LocationDialog";
 import {
   Home,
   Wrench,
@@ -11,7 +12,6 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import LocationDialog from "./ui/LocationDialog";
 
 const Header = () => {
   const [location, setLocation] = useState("Nungambakkam, Chennai");
@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      {/* Desktop/Tablet Header */}
+      {/* Desktop / Tablet Header */}
       <header className="sticky top-0 z-50 bg-background border-b shadow-sm backdrop-blur-md hidden md:flex">
         <div className="container flex items-center justify-between h-16 gap-6">
           {/* Logo */}
@@ -67,13 +67,14 @@ const Header = () => {
             <button className="p-2 rounded-full hover:bg-muted">
               <ShoppingCart className="h-5 w-5" />
             </button>
-            <div className="hidden md:flex">
-              <AuthDialog defaultTab="signin">
-                <button className="p-2 rounded-full hover:bg-muted">
-                  <User className="h-5 w-5" />
-                </button>
-              </AuthDialog>
-            </div>
+
+            {/* Desktop / Tablet Account navigates to Account page */}
+            <button
+              onClick={() => navigate("/account")}
+              className="p-2 rounded-full hover:bg-muted"
+            >
+              <User className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </header>
@@ -104,12 +105,13 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Bottom Nav (mobile only) */}
+      {/* Mobile Bottom Navbar */}
       <nav
         className="fixed bottom-0 left-0 right-0 z-[60] bg-background border-t shadow-md md:hidden"
         aria-label="Mobile navigation"
       >
         <div className="grid grid-cols-5 h-16">
+          {/* Home */}
           <button
             onClick={() => navigate("/")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -118,6 +120,7 @@ const Header = () => {
             <span>Home</span>
           </button>
 
+          {/* Services */}
           <button
             onClick={() => handleNavClick("#services")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -126,6 +129,7 @@ const Header = () => {
             <span>Services</span>
           </button>
 
+          {/* How it Works */}
           <button
             onClick={() => handleNavClick("#how-it-works")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -134,6 +138,7 @@ const Header = () => {
             <span>How it Works</span>
           </button>
 
+          {/* Provider */}
           <AuthDialog defaultTab="signup">
             <button className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary">
               <Briefcase className="h-5 w-5" />
@@ -141,12 +146,14 @@ const Header = () => {
             </button>
           </AuthDialog>
 
-          <AuthDialog defaultTab="signin">
-            <button className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary">
-              <User className="h-5 w-5" />
-              <span>Account</span>
-            </button>
-          </AuthDialog>
+          {/* Account */}
+          <button
+            onClick={() => navigate("/account")}
+            className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
+          >
+            <User className="h-5 w-5" />
+            <span>Account</span>
+          </button>
         </div>
       </nav>
     </>

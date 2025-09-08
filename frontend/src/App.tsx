@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
+import AccountPage from "./components/AccountPage";
+import Header from "./components/Header";
 
 const queryClient = new QueryClient();
 
@@ -22,10 +24,12 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <Header /> {/* Header always visible including bottom navbar */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services/:category" element={<Services />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/account" element={<AccountPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
