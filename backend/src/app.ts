@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import cors from "cors";
 import morgan from "morgan";
+import routes from "./routes";
 // import routes from "./routes";
 // import { errorHandler } from "./middleware/errorMiddleware";
 // import { rawBodyMiddleware } from "./middleware/rawBodyMiddleware";
@@ -22,7 +23,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 300 });
 app.use(limiter);
 
 // mount routes
-// app.use("/api", routes);
+app.use("/api", routes);
 
 // health
 app.get("/health", (_, res) => res.json({ ok: true }));

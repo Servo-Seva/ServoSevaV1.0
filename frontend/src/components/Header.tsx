@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthDialog from "@/components/auth/AuthDialog";
+import GoogleAuth from "@/components/auth/GoogleAuth";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -104,7 +105,6 @@ const Header = () => {
               </Button>
             </AuthDialog>
           </nav>
-
           <div className="flex flex-col gap-3 px-6 pb-6">
             <AuthDialog
               defaultTab="signin"
