@@ -13,5 +13,6 @@ export const env = {
   RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || "",
   RAZORPAY_WEBHOOK_SECRET: process.env.RAZORPAY_WEBHOOK_SECRET || "",
   ADMIN_COMMISSION_PERCENT: Number(process.env.ADMIN_COMMISSION_PERCENT || 10),
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || ""
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
+  GOOGLE_API_KEY: process.env.GOOGLE_API_KEY || ""
 };
