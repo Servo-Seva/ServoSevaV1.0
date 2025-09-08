@@ -37,47 +37,47 @@ const LocationDialog = ({ location, setLocation }: LocationDialogProps) => {
     <Dialog>
       {/* Trigger button */}
       <DialogTrigger asChild>
-        <button className="inline-flex items-center gap-2 px-4 py-2 border rounded-md bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer max-w-full sm:w-64">
-          <MapPin className="h-4 w-4 text-muted-foreground" />
+        <button className="inline-flex items-center gap-2 px-4 py-2 border rounded-md bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer max-w-full sm:w-72">
+          <MapPin className="h-5 w-5 text-muted-foreground" />
           <span className="text-sm truncate flex-1">{location}</span>
-          <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+          <ChevronDown className="h-5 w-5 text-muted-foreground shrink-0" />
         </button>
       </DialogTrigger>
 
       {/* Dialog */}
-      <DialogContent className="w-auto max-w-[98vw] sm:max-w-2xl lg:max-w-3xl p-0 rounded-md overflow-hidden shadow-2xl mx-auto">
+      <DialogContent className="w-auto max-w-[98vw] sm:max-w-3xl lg:max-w-4xl p-6 rounded-md overflow-hidden shadow-2xl mx-auto">
         {/* Header */}
         <DialogHeader className="p-4 border-b">
-          <DialogTitle className="text-base font-semibold text-foreground">
+          <DialogTitle className="text-lg sm:text-xl font-semibold text-foreground">
             Choose your location
           </DialogTitle>
         </DialogHeader>
 
         {/* Search Input */}
         <div className="p-4">
-          <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-background shadow-sm focus-within:ring-2 focus-within:ring-primary/50 w-full sm:w-auto">
-            <Search className="h-4 w-4 text-muted-foreground" />
+          <div className="flex items-center gap-2 border rounded-xl px-4 py-3 bg-background shadow-sm focus-within:ring-2 focus-within:ring-primary/50 w-full sm:w-auto">
+            <Search className="h-5 w-5 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search for your location, society, or apartment"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 min-w-0 bg-transparent outline-none text-sm"
+              className="flex-1 min-w-0 bg-transparent outline-none text-sm sm:text-base"
             />
           </div>
 
           {/* Use Current Location button */}
           <button
             onClick={handleUseCurrentLocation}
-            className="flex items-center gap-2 mt-5 px-3 py-2 rounded-lg text-primary font-medium hover:bg-primary/10 transition-colors w-full sm:w-auto"
+            className="flex items-center gap-2 mt-6 px-4 py-3 rounded-lg text-primary font-medium hover:bg-primary/10 transition-colors w-full sm:w-auto"
           >
-            <Crosshair className="h-4 w-4" />
+            <Crosshair className="h-5 w-5" />
             Use current location
           </button>
         </div>
 
         {/* Footer */}
-        <div className="flex justify-center items-center border-t py-3 text-xs text-muted-foreground bg-muted/10">
+        <div className="flex justify-center items-center border-t py-4 text-xs sm:text-sm text-muted-foreground bg-muted/10">
           powered by{" "}
           <span className="ml-1 text-blue-500 font-semibold">Google</span>
         </div>
