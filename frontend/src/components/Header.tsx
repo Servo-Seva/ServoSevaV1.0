@@ -1,69 +1,108 @@
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthDialog from "@/components/auth/AuthDialog";
-import { Home, Wrench, Zap, Briefcase, User } from "lucide-react";
+import {
+  Home,
+  Wrench,
+  Zap,
+  Briefcase,
+  User,
+  Search,
+  ShoppingCart,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import LocationDialog from "./ui/LocationDialog";
 
 const Header = () => {
+  const [location, setLocation] = useState("Nungambakkam, Chennai");
+  const navigate = useNavigate();
+
   const handleNavClick = (id: string) => {
     if (typeof window === "undefined") return;
     const el = document.querySelector(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
-    else window.scrollTo({ top: 0, behavior: "smooth" }); // fallback for Home
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const navigate = useNavigate();
 
   return (
     <>
-      {/* Top Header (desktop & theme toggle) */}
-      <header className="sticky top-0 z-50 bg-background border-b backdrop-blur">
-        <div className="container flex items-center justify-between h-16">
+      {/* Desktop/Tablet Header */}
+      <header className="sticky top-0 z-50 bg-background border-b shadow-sm backdrop-blur-md hidden md:flex">
+        <div className="container flex items-center justify-between h-16 gap-6">
           {/* Logo */}
-          <img
-            src="/logo.png"
-            alt="ServiceConnect Logo"
-            className="h-12 w-auto object-contain"
-          />
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <button
-              onClick={() => handleNavClick("#services")}
-              className="hover:text-primary font-medium"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => handleNavClick("#how-it-works")}
-              className="hover:text-primary font-medium"
-            >
-              How it Works
-            </button>
-            <AuthDialog defaultTab="signup">
-              <Button variant="ghost" className="font-medium">
-                Become a Provider
-              </Button>
-            </AuthDialog>
-          </nav>
-
-          {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
-            <AuthDialog defaultTab="signin">
-              <Button variant="ghost">Sign In</Button>
-            </AuthDialog>
-            <AuthDialog defaultTab="signup">
-              <Button>Get Started</Button>
-            </AuthDialog>
+          <div className="flex items-center flex-shrink-0">
+            <img
+              src="/logo.png"
+              alt="ServiceConnect Logo"
+              className="h-10 w-auto object-contain"
+            />
           </div>
 
-          {/* Mobile actions (top right) */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Categories */}
+          <nav className="flex items-center gap-6 font-medium text-sm">
+            <button className="hover:text-primary transition-colors">
+              Beauty
+            </button>
+            <button className="hover:text-primary transition-colors">
+              Homes
+            </button>
+          </nav>
+
+          {/* Location + Search */}
+          <div className="flex items-center gap-3 flex-1 max-w-lg ml-6">
+            <LocationDialog location={location} setLocation={setLocation} />
+            <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 flex-1">
+              <Search className="h-4 w-4 text-muted-foreground mr-2 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search for ‘AC service’"
+                className="flex-1 bg-transparent outline-none text-sm"
+              />
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
+            <button className="p-2 rounded-full hover:bg-muted">
+              <ShoppingCart className="h-5 w-5" />
+            </button>
+            <div className="hidden md:flex">
+              <AuthDialog defaultTab="signin">
+                <button className="p-2 rounded-full hover:bg-muted">
+                  <User className="h-5 w-5" />
+                </button>
+              </AuthDialog>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Header */}
+      <div className="md:hidden sticky top-0 z-50 bg-background border-b shadow-sm backdrop-blur-md p-2">
+        {/* Location + Cart row */}
+        <div className="flex items-center justify-between">
+          {/* Location Dropdown */}
+          <div className="flex-1">
+            <LocationDialog location={location} setLocation={setLocation} />
+          </div>
+
+          {/* Cart Button */}
+          <button className="p-2 rounded-full border border-gray-400 hover:bg-muted ml-2">
+            <ShoppingCart className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Search Bar below */}
+        <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 mt-2">
+          <Search className="h-4 w-4 text-muted-foreground mr-2 shrink-0" />
+          <input
+            type="text"
+            placeholder="Search for ‘AC service’"
+            className="flex-1 bg-transparent outline-none text-sm"
+          />
+        </div>
+      </div>
 
       {/* Bottom Nav (mobile only) */}
       <nav
@@ -71,7 +110,6 @@ const Header = () => {
         aria-label="Mobile navigation"
       >
         <div className="grid grid-cols-5 h-16">
-          {/* Home */}
           <button
             onClick={() => navigate("/")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -80,7 +118,6 @@ const Header = () => {
             <span>Home</span>
           </button>
 
-          {/* Services */}
           <button
             onClick={() => handleNavClick("#services")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -89,7 +126,6 @@ const Header = () => {
             <span>Services</span>
           </button>
 
-          {/* How it Works */}
           <button
             onClick={() => handleNavClick("#how-it-works")}
             className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
@@ -98,7 +134,6 @@ const Header = () => {
             <span>How it Works</span>
           </button>
 
-          {/* Provider */}
           <AuthDialog defaultTab="signup">
             <button className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary">
               <Briefcase className="h-5 w-5" />
@@ -106,7 +141,6 @@ const Header = () => {
             </button>
           </AuthDialog>
 
-          {/* Account */}
           <AuthDialog defaultTab="signin">
             <button className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary">
               <User className="h-5 w-5" />
