@@ -54,7 +54,7 @@ const LocationPickerPage = () => {
           placeholder="Search location..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full px-4 py-2 border rounded mb-4 bg-white outline-none"
+          className="w-full px-4 py-2 border border-zinc-300 rounded mb-4 bg-white outline-none"
         />
         <button
           className="w-full flex items-center justify-center gap-2 py-2 mb-4 rounded bg-primary text-white font-semibold text-base"
@@ -74,7 +74,7 @@ const LocationPickerPage = () => {
               className={`px-4 py-2 rounded border text-left text-sm ${
                 selected === loc
                   ? "bg-primary text-white"
-                  : "bg-muted text-foreground hover:bg-primary hover:text-white transition"
+                  : "rounded-sm border border-gray-200 text-foreground hover:bg-primary hover:text-white transition"
               }`}
               onClick={() => handleSelect(loc)}
             >
