@@ -51,14 +51,14 @@ const Header = () => {
           {/* Location + Search */}
           <div className="flex items-center gap-3 flex-1 max-w-lg ml-6">
             <LocationDialog location={location} setLocation={setLocation} />
-            <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 flex-1">
+            {/* <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 flex-1">
               <Search className="h-4 w-4 text-muted-foreground mr-2 shrink-0" />
               <input
                 type="text"
                 placeholder="Search for ‘AC service’"
                 className="flex-1 bg-transparent outline-none text-sm"
               />
-            </div>
+            </div> */}
           </div>
 
           {/* Actions */}
@@ -95,14 +95,14 @@ const Header = () => {
         </div>
 
         {/* Search Bar below */}
-        <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 mt-2">
+        {/* <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 mt-2">
           <Search className="h-4 w-4 text-muted-foreground mr-2 shrink-0" />
           <input
             type="text"
             placeholder="Search for ‘AC service’"
             className="flex-1 bg-transparent outline-none text-sm"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Mobile Bottom Navbar */}

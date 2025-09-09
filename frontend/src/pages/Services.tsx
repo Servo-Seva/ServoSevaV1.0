@@ -123,7 +123,7 @@ const Services = () => {
   if (!serviceInfo) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
+        {/* <Header /> */}
         <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="text-2xl font-bold mb-4">Service not found</h1>
           <Link to="/">
@@ -137,7 +137,7 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      {/* <Header /> */}
 
       <div className="container mx-auto px-4 py-8">
         {/* Back + heading */}
