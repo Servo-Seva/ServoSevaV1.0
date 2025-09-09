@@ -1,6 +1,5 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthDialog from "@/components/auth/AuthDialog";
-import LocationDialog from "./ui/LocationDialog";
 import {
   Home,
   Wrench,
@@ -9,6 +8,7 @@ import {
   User,
   Search,
   ShoppingCart,
+  MapPin,
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -53,7 +53,21 @@ const Header = () => {
 
           {/* Location + Search */}
           <div className="flex items-center gap-3 flex-1 max-w-lg ml-6">
-            <LocationDialog location={location} setLocation={setLocation} />
+            <button
+              className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 flex-1 hover:bg-primary/10 transition gap-2"
+              onClick={() => navigate("/location")}
+              style={{ minWidth: 0 }}
+            >
+              <span className="flex items-center justify-center">
+                <MapPin
+                  className="h-5 w-5 text-primary"
+                  aria-label="Location"
+                />
+              </span>
+              <span className="text-sm font-medium text-foreground truncate">
+                {location}
+              </span>
+            </button>
             {/* <div className="flex items-center px-3 py-2 border rounded-lg bg-muted/30 flex-1">
               <Search className="h-4 w-4 text-muted-foreground mr-2 shrink-0" />
               <input
@@ -89,7 +103,18 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Location Dropdown */}
             <div className="flex-1">
-              <LocationDialog location={location} setLocation={setLocation} />
+              <button
+                className="flex items-center px-3 py-2 border rounded-sm bg-muted/30 flex-1 hover:bg-primary/10 transition gap-2"
+                onClick={() => navigate("/location")}
+              >
+                <MapPin
+                  className="h-5 w-5 text-primary"
+                  aria-label="Location"
+                />
+                <span className="text-sm font-medium text-foreground truncate">
+                  {location}
+                </span>
+              </button>
             </div>
 
             {/* Cart Button */}

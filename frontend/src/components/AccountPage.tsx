@@ -2,12 +2,17 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AccountPage = () => {
   const navigate = useNavigate();
+  const [animate, setAnimate] = useState(false);
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
 
   const handlePhoneLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +25,11 @@ const AccountPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 pb-24">
+    <div
+      className={`min-h-screen bg-background p-4 pb-24 transition-opacity duration-500 ${
+        animate ? "opacity-100" : "opacity-0"
+      }`}
+    >
       {/* Back Arrow Button */}
       <button
         className="p-2 rounded-full hover:bg-muted mb-4 flex items-center"
@@ -37,8 +46,11 @@ const AccountPage = () => {
       <div className="flex flex-row items-center gap-4 mb-6 flex-wrap">
         {/* Login / Signup button navigates to phone login page */}
         <button
-          className="px-4 py-2 border rounded bg-primary text-white text-sm"
-          onClick={() => navigate("/login")}
+          className="px-4 py-2 border rounded bg-primary text-white text-sm transition-transform duration-300 active:scale-95"
+          onClick={() => {
+            setAnimate(false);
+            setTimeout(() => navigate("/login"), 300);
+          }}
         >
           Login / Signup
         </button>
