@@ -9,6 +9,8 @@ import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import AccountPage from "./components/AccountPage";
 import Header from "./components/Header";
+import SearchPage from "./pages/SearchPage";
+import PhoneLoginPage from "./pages/PhoneLoginPage";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services/:category" element={<Services />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/login" element={<PhoneLoginPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="/account" element={<AccountPage />} />
             <Route path="*" element={<NotFound />} />
