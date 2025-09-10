@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import SearchPage from "./pages/SearchPage";
 import PhoneLoginPage from "./pages/PhoneLoginPage";
 import LocationPickerPage from "./pages/LocationPickerPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/search" element={<SearchPage />} />
             <Route path="/login" element={<PhoneLoginPage />} />
             <Route path="/location" element={<LocationPickerPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="/account" element={<AccountPage />} />
             <Route path="*" element={<NotFound />} />

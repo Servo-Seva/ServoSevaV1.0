@@ -162,7 +162,7 @@ const Header = () => {
 
             {/* How it Works */}
             <button
-              onClick={() => handleNavClick("#how-it-works")}
+              onClick={() => navigate("/how-it-works")}
               className="flex flex-col items-center justify-center text-xs text-muted-foreground hover:text-primary"
             >
               <Zap className="h-5 w-5" />

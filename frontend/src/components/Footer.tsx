@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Mail, 
-  Phone, 
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
   MapPin,
-  MessageCircle 
+  MessageCircle,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,24 +22,45 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">SC</span>
+                <span className="text-primary-foreground font-bold text-sm">
+                  SC
+                </span>
               </div>
-              <span className="font-bold text-xl text-foreground">ServiceConnect</span>
+              <span className="font-bold text-xl text-foreground">
+                ServiceConnect
+              </span>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Connecting customers with trusted service providers for all your home and business needs.
+              Connecting customers with trusted service providers for all your
+              home and business needs.
             </p>
             <div className="flex gap-3">
-              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
                 <Twitter className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
                 <Instagram className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
                 <Linkedin className="h-4 w-4" />
               </Button>
             </div>
@@ -48,11 +70,36 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Quick Links</h3>
             <nav className="space-y-3">
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">About Us</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">How It Works</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Become a Provider</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Help Center</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Terms of Service</a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                About Us
+              </a>
+              <Link
+                to="/how-it-works"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                How It Works
+              </Link>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Become a Provider
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Help Center
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Terms of Service
+              </a>
             </nav>
           </div>
 
@@ -60,11 +107,36 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Services</h3>
             <nav className="space-y-3">
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Plumbing</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Electrical</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Home Cleaning</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">Vehicle Service</a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">All Services</a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Plumbing
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Electrical
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Home Cleaning
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                Vehicle Service
+              </a>
+              <a
+                href="#"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                All Services
+              </a>
             </nav>
           </div>
 
@@ -90,10 +162,14 @@ const Footer = () => {
 
             <div className="space-y-3">
               <h4 className="font-medium text-foreground">Newsletter</h4>
-              <p className="text-sm text-muted-foreground">Get updates on new services and offers</p>
+              <p className="text-sm text-muted-foreground">
+                Get updates on new services and offers
+              </p>
               <div className="flex gap-2">
                 <Input placeholder="Enter your email" className="flex-1" />
-                <Button variant="hero" size="sm">Subscribe</Button>
+                <Button variant="hero" size="sm">
+                  Subscribe
+                </Button>
               </div>
             </div>
           </div>
@@ -105,15 +181,25 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © 2024 ServiceConnect. All rights reserved.
           </p>
-          
+
           <div className="flex items-center gap-6">
             <Button variant="ghost" size="sm" className="gap-2">
               <MessageCircle className="h-4 w-4" />
               WhatsApp Support
             </Button>
             <div className="flex gap-4 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Cookie Policy</a>
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Cookie Policy
+              </a>
             </div>
           </div>
         </div>
