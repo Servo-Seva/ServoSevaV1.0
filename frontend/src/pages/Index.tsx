@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ServiceCategories from "@/components/ServiceCategories";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import AllServices from "@/components/AllServices";
 
 const Index = () => {
   return (
@@ -11,7 +12,8 @@ const Index = () => {
       <main className="pb-20 md:pb-0">
         <Hero />
         <ServiceCategories />
-        {/* <HowItWorks /> */}
+        <AllServices />
+
         <Testimonials />
         <Footer />
       </main>
