@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">
@@ -29,6 +29,50 @@ const Footer = () => {
               <span className="font-bold text-xl text-foreground">
                 ServiceConnect
               </span>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              Connecting customers with trusted service providers for all your
+              home and business needs.
+            </p>
+            <div className="flex gap-3">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
+                <Facebook className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
+                <Twitter className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
+                <Instagram className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-primary/10"
+              >
+                <Linkedin className="h-4 w-4" />
+              </Button>
+            </div>
+          </div> */}
+          {/* Company Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <img
+                src="/logo.png" // replace with your logo path
+                alt="ServiceConnect Logo"
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-muted-foreground leading-relaxed">
               Connecting customers with trusted service providers for all your

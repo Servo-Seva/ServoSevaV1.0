@@ -215,6 +215,50 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
+        <div className="text-center mt-16">
+          <div className="bg-card p-6 sm:p-8 rounded-2xl shadow-elegant border max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              Ready to get started?
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground mb-6">
+              Join thousands of satisfied customers who trust ServiceConnect for
+              their home service needs.
+            </p>
+            {/* Single row stats */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base mb-6">
+              <div className="text-center flex-1">
+                <div className="text-xl sm:text-2xl font-bold text-primary">
+                  24/7
+                </div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Customer Support
+                </div>
+              </div>
+              <div className="text-center flex-1">
+                <div className="text-xl sm:text-2xl font-bold text-success">
+                  99%
+                </div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Satisfaction Rate
+                </div>
+              </div>
+              <div className="text-center flex-1">
+                <div className="text-xl sm:text-2xl font-bold text-warning">
+                  2hr
+                </div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Avg Response Time
+                </div>
+              </div>
+            </div>
+            <button
+              className="mt-4 px-6 py-3 bg-primary text-white rounded font-semibold shadow hover:bg-primary/80 transition"
+              onClick={() => (window.location.href = "/how-it-works")}
+            >
+              Learn More: How It Works
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
