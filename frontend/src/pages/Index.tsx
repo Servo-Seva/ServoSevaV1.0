@@ -50,7 +50,7 @@ const Index = () => {
         )}?text=${encodeURIComponent(whatsappMessage)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed right-5 z-50 bg-green-500 hover:bg-green-600 p-4 rounded-full shadow-lg flex items-center justify-center bottom-20 md:bottom-10 lg:bottom-5"
+        className="fixed right-5 z-50 bg-green-500 hover:bg-green-600 p-4 rounded-full shadow-lg flex items-center justify-center bottom-20 md:bottom-10 lg:bottom-5 transform translate-x-24 opacity-0 animate-slide-in"
       >
         <BsWhatsapp className="h-5 w-5 text-white" />
       </a>
