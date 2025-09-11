@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const salonServices = [
   {
@@ -16,6 +16,25 @@ const salonServices = [
   {
     title: "Hair care",
     img: "https://media.istockphoto.com/id/1124229429/photo/nice-good-looking-woman-visiting-a-cosmetology-clinic.jpg?s=612x612&w=0&k=20&c=jwE7SXB2m4DI_sAUrd-6hRjSgVQR2Y3L5GwcQADioWM=",
+  },
+];
+
+const menSalonServices = [
+  {
+    title: "Haircut",
+    img: "https://img.freepik.com/free-photo/hairdresser-cutting-hair-senior-man_23-2148107127.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    title: "Shaving",
+    img: "https://img.freepik.com/free-photo/barber-trimming-beard-customer_23-2148101231.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    title: "Hair Coloring",
+    img: "https://img.freepik.com/free-photo/hairdresser-dyeing-hair-young-man_23-2148106212.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    title: "Beard Care",
+    img: "https://img.freepik.com/free-photo/hairdresser-trimming-beard-young-man_23-2148104567.jpg?semt=ais_hybrid&w=740&q=80",
   },
 ];
 
@@ -87,25 +106,141 @@ const homeRepairServices = [
   },
 ];
 
+// Carousel wrapper
+const Carousel: React.FC<{
+  items: any[];
+  renderItem: (item: any, idx: number) => React.ReactNode;
+}> = ({ items, renderItem }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      const { clientWidth } = scrollRef.current;
+      scrollRef.current.scrollBy({
+        left: dir === "left" ? -clientWidth : clientWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative">
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth md:overflow-x-hidden"
+      >
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="w-[48%] sm:w-[30%] md:w-[22%] flex-shrink-0"
+          >
+            {renderItem(item, idx)}
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 bg-white shadow p-2 rounded-full"
+      >
+        ◀
+      </button>
+      <button
+        onClick={() => scroll("right")}
+        className="hidden md:flex absolute top-1/2 right-0 -translate-y-1/2 bg-white shadow p-2 rounded-full"
+      >
+        ▶
+      </button>
+    </div>
+  );
+};
+
+// Service Card
+const ServiceCard: React.FC<{
+  title: string;
+  rating?: string;
+  price?: string;
+  oldPrice?: string;
+  img: string;
+}> = ({ title, rating, price, oldPrice, img }) => (
+  <div className="bg-white rounded-lg shadow-sm overflow-hidden text-left">
+    <img src={img} alt={title} className="h-40 w-full object-cover" />
+    <div className="p-3">
+      <p className="font-medium text-sm">{title}</p>
+      {rating && <p className="text-sm text-gray-500 mt-1">⭐ {rating}</p>}
+      {price && (
+        <p className="text-base font-semibold mt-1">
+          {price}{" "}
+          {oldPrice && (
+            <span className="line-through text-gray-400 text-sm ml-2">
+              {oldPrice}
+            </span>
+          )}
+        </p>
+      )}
+    </div>
+  </div>
+);
+
+// const AllServices: React.FC = () => {
+//   return (
+//     <div className="py-10 px-5 md:px-20 space-y-12">
+//       {/* Salon for women */}
+//       <section>
+//         <h2 className="text-2xl font-bold mb-6">Salon for women</h2>
+//         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+//           {salonServices.map((service, idx) => (
+//             <ServiceCard key={idx} {...service} />
+//           ))}
+//         </div>
+//       </section>
+
+//       {/* Most booked services */}
+//       <section>
+//         <h2 className="text-2xl font-bold mb-6">Most booked services</h2>
+//         <Carousel
+//           items={bookedServices}
+//           renderItem={(service) => <ServiceCard {...service} />}
+//         />
+//       </section>
+
+//       {/* Home repair & installation */}
+//       <section>
+//         <div className="flex justify-between items-center mb-6">
+//           <h2 className="text-2xl font-bold">Home repair & installation</h2>
+//           <button className="text-purple-600 text-sm font-medium">
+//             See all
+//           </button>
+//         </div>
+//         <Carousel
+//           items={homeRepairServices}
+//           renderItem={(service) => <ServiceCard {...service} />}
+//         />
+//       </section>
+//     </div>
+//   );
+// };
+
 const AllServices: React.FC = () => {
   return (
     <div className="py-10 px-5 md:px-20 space-y-12">
       {/* Salon for women */}
       <section>
-        <h2 className="text-2xl font-bold mb-6">Salon for women</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <h2 className="text-2xl font-bold mb-6">Salon for Women</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {salonServices.map((service, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-lg shadow-sm overflow-hidden text-center"
-            >
-              <img
-                src={service.img}
-                alt={service.title}
-                className="h-40 w-full object-cover"
-              />
-              <p className="py-3 font-medium">{service.title}</p>
-            </div>
+            <ServiceCard key={idx} {...service} />
+          ))}
+        </div>
+      </section>
+
+      {/* Salon for men */}
+      <section>
+        <h2 className="text-2xl font-bold mb-6">Salon for Men</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {menSalonServices.map((service, idx) => (
+            <ServiceCard key={idx} {...service} />
           ))}
         </div>
       </section>
@@ -113,32 +248,10 @@ const AllServices: React.FC = () => {
       {/* Most booked services */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Most booked services</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-          {bookedServices.map((service, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-lg shadow-sm overflow-hidden"
-            >
-              <img
-                src={service.img}
-                alt={service.title}
-                className="h-40 w-full object-cover"
-              />
-              <div className="p-3">
-                <p className="font-medium text-sm">{service.title}</p>
-                <p className="text-sm text-gray-500">⭐ {service.rating}</p>
-                <p className="text-base font-semibold">
-                  {service.price}{" "}
-                  {service.oldPrice && (
-                    <span className="line-through text-gray-400 text-sm ml-2">
-                      {service.oldPrice}
-                    </span>
-                  )}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          items={bookedServices}
+          renderItem={(service) => <ServiceCard {...service} />}
+        />
       </section>
 
       {/* Home repair & installation */}
@@ -149,25 +262,10 @@ const AllServices: React.FC = () => {
             See all
           </button>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-          {homeRepairServices.map((service, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-lg shadow-sm overflow-hidden"
-            >
-              <img
-                src={service.img}
-                alt={service.title}
-                className="h-40 w-full object-cover"
-              />
-              <div className="p-3">
-                <p className="font-medium text-sm">{service.title}</p>
-                <p className="text-sm text-gray-500">⭐ {service.rating}</p>
-                <p className="text-base font-semibold">{service.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          items={homeRepairServices}
+          renderItem={(service) => <ServiceCard {...service} />}
+        />
       </section>
     </div>
   );
